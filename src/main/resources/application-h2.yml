@@ -1,0 +1,19 @@
+#      http://localhost:9092/h2-console  to view H2 DB in UI
+spring:
+  profiles: h2
+  datasource:
+    name: h2
+    driverClassName: org.h2.Driver
+#    initialization-mode: never
+    url: jdbc:h2:mem:h2
+#    url: jdbc:h2:mem:testdb  # default url
+# h2.console.enabled=true is required to access the DB through UI
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+     ddl-auto: update
+    show-sql: true
+     
+  

@@ -2,7 +2,6 @@ package singh.mahabir.bis;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * Main class to start the book info service
@@ -11,12 +10,16 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  *
  */
 @SpringBootApplication
-
 /**
- * The below annotation is required to make this application as client of eureka
- * but this annotation is not required when we added the eureka dependency
+ * By having "spring-cloud-starter-netflix-eureka-client" on the classpath your
+ * application will automatically register with the Eureka Server
+ * without @EnableDiscoveryClient
+ * 
+ * since 1.4.7.RELEASE
+ * 
+ * Upto 1.3.6.RELEASE we required @EnableDiscoveryClient
  */
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 public class BookInfoServiceApplication {
 
 	public static void main(String[] args) {
