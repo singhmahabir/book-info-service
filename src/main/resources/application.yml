@@ -1,17 +1,13 @@
-#logging:
-#  level:
-#    .: error
-#    org.springframework: ERROR
-#    singh.mahabir.bis: ERROR
+# if spring.profiles=name is not mention then that is global property
 # If you are not using eureka or spring.cloud then put spring.port in application.yml
 server:
   port: 9092
-
+# we can set active profile from here as well no need to pass at run time
 spring:
   profiles:
-    active: "h2" # we can set active profile from here as well no need to pass at run time
-  main:
-    banner-mode: "off"
+    active: h2
+#  main:
+#    banner-mode: "off"
 # info property details shows in actuators info url http://localhost:8760/actuator/info
 info:
   name: '@project.artifactId@'
@@ -35,15 +31,6 @@ management:
         exclude:
 #        - env
         - beans
-
-# If you are using Admin server and want to registered your application as Admin client then add below configuration. 
-#spring:
-#  boot:
-#    admin:
-#      url: http://localhost:1111
-# below two properties are required when admin server is secured
-#      username: admin
-#      password: admin123 
 
 eureka:
   client:
