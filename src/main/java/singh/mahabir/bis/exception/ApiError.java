@@ -27,10 +27,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ApiError {
 
-	private java.time.LocalDateTime timestamp;
-	private int status;
-	private HttpStatus error;
+    private java.time.LocalDateTime timestamp;
+    private int status;
+    private HttpStatus error;
     private String message;
-	private String trace;
-	private String path;
+    private String trace;
+    private String path;
 }

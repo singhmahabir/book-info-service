@@ -1,0 +1,8 @@
+spring:
+  profiles: zipkin
+
+  zipkin:
+    baseUrl: http://localhost:8762
+  sleuth:
+    sampler:
+      percentage: 1.0

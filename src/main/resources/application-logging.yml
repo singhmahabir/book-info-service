@@ -1,0 +1,9 @@
+spring:
+  profiles: logging
+
+logging:
+  level:
+#    .: error
+    org.springframework.cloud.sleuth: DEBUG
+
+# If you are not using eureka or spring.cloud then put spring.port in application.yml

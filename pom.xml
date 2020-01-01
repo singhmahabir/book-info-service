@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.6.RELEASE</version>
+		<version>2.2.2.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -18,76 +18,85 @@
 
 	<properties>
 		<java.version>1.8</java.version>
-		<spring-cloud.version>Greenwich.SR2</spring-cloud.version>
-		<!-- <spring-boot-admin.version>2.1.6</spring-boot-admin.version> -->
+		<spring-cloud.version>Hoxton.SR1</spring-cloud.version>
 	</properties>
 
 	<dependencies>
-	<!-- The below dependency is required for eureka-client -->
-	<dependency>
-		<groupId>org.springframework.cloud</groupId>
-		<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-	</dependency>
-	
-	<!-- when you want to make your application as client of spring admin Service -->
-	<!-- <dependency>
-	 	 <groupId>de.codecentric</groupId>
-		 <artifactId>spring-boot-admin-starter-client</artifactId> 
-	</dependency> -->
+		<!-- The below dependency is required for eureka-client -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
 
-	<!-- Either use this dependency or use @XmlRootElement over your POJO to 
-		generate the xml -->
-	<dependency>
-		<groupId>com.fasterxml.jackson.dataformat</groupId>
-		<artifactId>jackson-dataformat-xml</artifactId>
-	</dependency>
+		<!-- Either use this dependency or use @XmlRootElement over your POJO to 
+			generate the xml -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+		</dependency>
 
-	<!-- required to run refresh end-point if configuration files get changed 
-		and without restarting you can use the changed values -->
-	<dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-actuator</artifactId>
-	</dependency>
+		<!-- required to run refresh end-point if configuration files get changed 
+			and without restarting you can use the changed values -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 
-	<!-- required for spring MVC , to crate rest end-point -->
-	<dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-web</artifactId>
-	</dependency>
+		<!-- required for spring MVC , to crate rest end-point -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 
-	<!-- this is required to make application auto re-deploy when project changes -->
-	<dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-devtools</artifactId>
-		<scope>runtime</scope>
-	</dependency>
+		<!-- this is required to make application auto re-deploy when project changes -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 
-	<!-- this is required for setter getter, logging and more through annotation -->
-	<dependency>
-		<groupId>org.projectlombok</groupId>
-		<artifactId>lombok</artifactId>
-		<optional>true</optional>
-	</dependency>
+		<!-- this is required for setter getter, logging and more through annotation -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
 
-	<!-- required for spring JPA -->
-	<dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-data-jpa</artifactId>
-	</dependency>
+		<!-- required for spring JPA -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<!-- log tracer -->
+		<!-- <dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+		</dependency> -->
 
-	<!-- in memory database -->
-	<dependency>
-		<groupId>com.h2database</groupId>
-		<artifactId>h2</artifactId>
-		<scope>runtime</scope>
-	</dependency>
+		<!-- zipkin client if this is added then sleuth is not required -->
+		<!-- <dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
+		</dependency> -->
 
-	<!-- required for testing -->
-	<dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-test</artifactId>
-		<scope>test</scope>
-	</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<!-- in memory database -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- required for testing -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -100,14 +109,6 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			<!--This is required when you need to add spring-boot-admin related configuration -->
-			<!-- <dependency>
-					 <groupId>de.codecentric</groupId>
-					 <artifactId>spring-boot-admin-dependencies</artifactId> 
-					 <version>${spring-boot-admin.version}</version>
-					 <type>pom</type>
-					 <scope>import</scope> 
-				</dependency> -->
 		</dependencies>
 	</dependencyManagement>
 	<!--It automatically tries to rewrite archives to make them executable -->

@@ -1,11 +1,18 @@
-# if spring.profiles=name is not mention then that is global property
+# if spring.profiles = 'name' is not mention then that is global property
 # If you are not using eureka or spring.cloud then put spring.port in application.yml
 server:
   port: 9092
 # we can set active profile from here as well no need to pass at run time
 spring:
   profiles:
-    active: h2
+#    active: h2,logging,zipkin
+    active:
+      - h2
+      - eureka
+      - actuator
+      - security
+#      - logging
+#      - zipkin
 #  main:
 #    banner-mode: "off"
 # info property details shows in actuators info url http://localhost:8760/actuator/info
@@ -17,34 +24,4 @@ info:
   artifactId: '@project.artifactId@'
   packaging: '@project.packaging@'
   groupId: '@project.groupId@'
-
-# If you want to consumed Actuator restricted command but upto 1.x.x actuator version 
-#management:
-#  security:
-#    enabled: false
-# From 2.x.x you need to use below properties to enable restricted endpoints of actuator
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-        exclude:
-#        - env
-        - beans
-
-eureka:
-  client:
-    enabled: true # default true
-    registerWithEureka: true #you do not want your instances to be discovered whereas you just want do discover other instances.
-    fetchRegistry: true # Indicates whether this client should fetch eureka registry information from eureka server.
-    serviceUrl: #Map of availability zone to list of fully qualified URLs to communicate with eureka server
-      defaultZone : http://${eureka.instance.hostname}:8760/eureka/
-    
-
-# for "eureka.instance" related properties you can go through
-# https://github.com/spring-cloud/spring-cloud-netflix/blob/master/spring-cloud-netflix-eureka-client/src/main/java/org/springframework/cloud/netflix/eureka/EurekaInstanceConfigBean.java
-  instance:
-    hostname: localhost
-    preferIpAddress: true
-    leaseRenewalIntervalInSeconds: 3
  
